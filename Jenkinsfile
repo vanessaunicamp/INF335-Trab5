@@ -5,25 +5,25 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clona o código fonte do repositório
-                git 'https://github.com/vanessaunicamp/INF335-Trab5'
+                git 'https://github.com/seu-usuario/seu-repositorio.git'
             }
         }
         stage('Build') {
             steps {
                 // Compila o projeto Maven
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
             }
         }
         stage('Test') {
             steps {
                 // Executa os testes JUnit
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
         stage('Package') {
             steps {
                 // Empacota o projeto em um arquivo .jar
-                sh 'mvn package'
+                bat 'mvn package'
             }
         }
     }
