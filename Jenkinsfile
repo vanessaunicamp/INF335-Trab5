@@ -20,4 +20,24 @@ pipeline {
                 sh 'mvn test'
             }
         }
-       
+        stage('Package') {
+            steps {
+                // Empacota o projeto em um arquivo .jar
+                sh 'mvn package'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Arquiva os artefatos gerados (arquivos .jar)
+            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        }
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+    }
+}
